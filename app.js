@@ -1,7 +1,7 @@
 function sendBarcode() {
     const barcode = document.getElementById('barcodeInput').value;
     if (barcode) {
-        fetch('http://127.0.0.1:5000/scan', {
+        fetch('https://samkhosravi.pythonanywhere.com/scan', {
             method: 'POST',
             headers: {
                 'Content-Type': 'application/json',
@@ -17,7 +17,7 @@ function sendBarcode() {
             })
             .catch((error) => {
                 console.error('Error:', error);
-                alert('Failed to send barcode.');
+                alert('Failed to send barcode. Check the console for error details.');
             });
     } else {
         alert('Please enter a barcode.');
