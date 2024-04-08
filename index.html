@@ -1,12 +1,12 @@
 <!DOCTYPE html>
 <html>
 <head>
-    <title>Scanner de Codes-Barres</title>
+    <title>Scanner de Code QR/Code-barres</title>
+    <script src="https://unpkg.com/html5-qrcode"></script>
 </head>
 <body>
-    <h1>Scannez un Code-Barres</h1>
-    <div id="interactive" class="viewport"></div> <!-- Flux vidéo de la caméra ici -->
-    <script src="https://cdnjs.cloudflare.com/ajax/libs/quagga/0.12.1/quagga.min.js"></script>
+    <h1>Scanner un Code QR/Code-barres</h1>
+    <div id="reader" style="width: 500px; height: 300px;"></div>
     <script src="app.js"></script>
 </body>
 </html>
