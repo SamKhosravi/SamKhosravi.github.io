@@ -27,6 +27,7 @@ document.addEventListener('DOMContentLoaded', function () {
     }, function (err) {
         if (err) {
             console.error(err);
+            document.getElementById('error-message').textContent = "Erreur : Impossible de démarrer la caméra."; // Affiche un message d'erreur
             return;
         }
         Quagga.start();
@@ -34,6 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     Quagga.onDetected(function (data) {
         console.log(data.codeResult.code);
+        document.getElementById('scanned-result').textContent = `Code scanné : ${data.codeResult.code}`; // Affiche le résultat du scan
         // Traitez le code détecté ici.
     });
 });
