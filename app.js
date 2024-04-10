@@ -35,7 +35,7 @@ document.addEventListener('DOMContentLoaded', function () {
 
     Quagga.onDetected(function (data) {
         console.log(data.codeResult.code);
-        document.getElementById('scanned-result').textContent = `Code scanné : ${data.codeResult.code}`; // Affiche le résultat du scan
+        document.getElementById('result').textContent = `Code scanné : ${data.codeResult.code}`; // Affiche le résultat du scan
         // Traitez le code détecté ici.
     });
 });
