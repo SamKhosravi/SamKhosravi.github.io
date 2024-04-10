@@ -1,15 +1,24 @@
 <!DOCTYPE html>
-<html>
+<html lang="fr">
 <head>
+    <meta charset="UTF-8">
     <title>Scanner de Code QR/Code-barres</title>
-    <script src="https://cdn.jsdelivr.net/npm/quagga@latest"></script>
+    <script src="https://unpkg.com/html5-qrcode"></script>
+    <style>
+        #reader { width: 500px; height: 300px; }
+        #result-section, #scan-result { margin-top: 20px; }
+        #error-message { color: red; }
+    </style>
 </head>
 <body>
     <h1>Scanner un Code QR/Code-barres</h1>
-    <div id="reader" style="width: 500px; height: 300px;"></div>
-    <p id="scanned-result">En attente de scan...</p> <!-- Ajouté -->
-    <p id="error-message"></p> <!-- Ajouté -->
-    <div id="result">Résultat du scan apparaîtra ici...</div>
+    <div id="reader"></div>
+    <div id="result-section">
+        <input type="text" id="scan-result" readonly>
+        <button onclick="sendResult()">Envoyer</button>
+    </div>
+    <p id="error-message"></p>
+
     <script src="app.js"></script>
 </body>
 </html>
