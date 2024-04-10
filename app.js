@@ -1,51 +1,52 @@
-// Fonction pour initialiser le scanner QR
-function setupScanner() {
-    const html5QrCode = new Html5Qrcode("reader");
-    const config = { fps: 10, qrbox: { width: 250, height: 250 } };
-    
-    function onScanSuccess(decodedText, decodedResult) {
-        // Affiche le résultat dans l'input
-        document.getElementById("scan-result").value = decodedText;
-        // Arrête le scanner
-        html5QrCode.stop().then(ignore => {
-            // Scanner arrêté.
-            // Vous pouvez ici redémarrer le scanner si nécessaire
-        }).catch(err => {
-            // Erreur à l'arrêt du scanner
-            console.error("Impossible d'arrêter le scanner.", err);
-        });
-    }
-    
-    function onScanError(errorMessage) {
-        // Erreur durant le scan
-        console.error("Erreur durant le scan.", errorMessage);
-    }
-    
-    // Démarre le scanner
-    html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess, onScanError)
-        .catch(err => {
-            // Gestion des erreurs, par exemple si aucun appareil n'est trouvé
-            document.getElementById("error-message").textContent = "Erreur : Impossible d'accéder à la caméra.";
-            console.error("Erreur lors du démarrage du scanner.", err);
-        });
+function onScanSuccess(decodedText, decodedResult) {
+    // Afficher le texte décodé
+    document.getElementById('scanned-text').innerText = decodedText;
+    // Optionnel : Arrêter le scanner après le premier scan réussi
+    // html5QrCode.stop().then(ignore => {}).catch(err => {});
 }
 
-// Fonction pour envoyer le résultat scanné au serveur Flask
-function sendResult() {
-    const scanResult = document.getElementById("scan-result").value;
-    if (scanResult) {
-        fetch('https://votreServeurFlask.com/scan', { // Remplacez avec votre URL Flask
-            method: 'POST',
-            headers: { 'Content-Type': 'application/json' },
-            body: JSON.stringify({ barcode: scanResult })
-        })
-        .then(response => response.json())
-        .then(data => console.log("Réponse du serveur :", data))
-        .catch(error => console.error("Erreur d'envoi :", error));
-    } else {
-        alert("Aucun code QR/code-barres scanné.");
-    }
+function onScanFailure(error) {
+    // Gestion des erreurs de scan (facultatif)
+    console.warn(`Scan échoué: ${error}`);
 }
 
-// Exécute le setup du scanner au chargement du document
-document.addEventListener('DOMContentLoaded', setupScanner);
+// Configuration de la caméra et du scanner
+let html5QrCode = new Html5Qrcode("reader");
+const config = { fps: 10, qrbox: { width: 250, height: 250 }, formatsToSupport: [ Html5QrcodeSupportedFormats.QR_CODE, Html5QrcodeSupportedFormats.CODE_128 ] };
+
+function startScanner() {
+    // Démarrage du scanner
+    html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess)
+    .catch(err => {
+        // Gestion de l'erreur si la caméra n'est pas accessible
+        document.getElementById('result').innerText = "Erreur : Impossible de démarrer la caméra.";
+        console.error(`Impossible de démarrer le scanner: ${err}`);
+    });
+}
+
+// Envoi du code au serveur Flask
+function sendBarcode() {
+    const barcode = document.getElementById('scanned-text').innerText || document.getElementById('manual-input').value;
+    if (!barcode) {
+        alert("Aucun code à envoyer.");
+        return;
+    }
+    
+    fetch("https://samkhosravi.pythonanywhere.com/scan", {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({ barcode: barcode })
+    })
+    .then(response => response.json())
+    .then(data => {
+        console.log('Réponse du serveur :', data);
+        alert("Code envoyé avec succès !");
+    })
+    .catch(error => {
+        console.error('Erreur lors de l\'envoi:', error);
+        alert("Erreur lors de l'envoi du code.");
+    });
+}
+
+// Démarrage du scanner lors du chargement de la page
+document.addEventListener('DOMContentLoaded', startScanner);
