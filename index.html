@@ -5,20 +5,16 @@
     <title>Scanner de Code QR/Code-barres</title>
     <script src="https://unpkg.com/html5-qrcode"></script>
     <style>
-        #reader { width: 500px; height: 300px; }
-        #result-section, #scan-result { margin-top: 20px; }
-        #error-message { color: red; }
+        #reader { width: 500px; height: 300px; margin: auto; }
+        #result { margin-top: 20px; }
     </style>
 </head>
 <body>
     <h1>Scanner un Code QR/Code-barres</h1>
     <div id="reader"></div>
-    <div id="result-section">
-        <input type="text" id="scan-result" readonly>
-        <button onclick="sendResult()">Envoyer</button>
-    </div>
-    <p id="error-message"></p>
-
+    <div id="result">Résultat du scan : <span id="scanned-text"></span></div>
+    <input type="text" id="manual-input" placeholder="Entrez un code manuellement"/>
+    <button onclick="sendBarcode()">Envoyer</button>
     <script src="app.js"></script>
 </body>
 </html>
