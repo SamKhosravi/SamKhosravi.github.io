@@ -30,8 +30,11 @@
     <div id="result">Résultat du scan : <span id="scanned-text"></span></div>
     <input type="text" id="manual-input" placeholder="Entrez un code manuellement ou scannez"/>
     <button onclick="sendBarcode()">Envoyer</button>
-    <button id="barcode-btn">Format Code-barres</button>
-    <button id="qrcode-btn">Format QR Code</button>
+    <div id="format-buttons-container">
+        <button id="barcode-btn">Format Code-barres</button>
+        <button id="qrcode-btn">Format QR Code</button>
+    </div>
+
     <!-- Historique des scans -->
     <div id="scanned-results">
         <h2>Historique des scans</h2>
