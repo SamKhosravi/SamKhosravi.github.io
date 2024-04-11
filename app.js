@@ -76,10 +76,14 @@ function sendBarcode() {
     .then(data => {
         console.log('Réponse du serveur :', data);
         alert("Code envoyé avec succès !");
+        // Redémarrez le scanner ici également si vous l'aviez arrêté
+        startScanner();
     })
     .catch(error => {
         console.error('Erreur lors de l\'envoi:', error);
         alert("Erreur lors de l'envoi du code.");
+        // Redémarrez le scanner ici également si vous l'aviez arrêté
+        startScanner();
     });
 }
 
