@@ -4,16 +4,16 @@ body {
     text-align: center;
 }
 
-#reader{
+#reader {
     width: 100%;
-    max-width: 500px;  /* Vous pouvez régler ceci pour une largeur maximale appropriée */
-    height: auto;  /*Gardez la hauteur automatique pour maintenir le ratio */
+    max-width: 500px; /* Vous pouvez régler ceci pour une largeur maximale appropriée */
+    height: auto; /* Gardez la hauteur automatique pour maintenir le ratio */
     margin: auto;
     border: 1px solid #ccc;
     position: relative;
 }
 
-/* Styles généraux pour les boutons */
+/* Styles généraux pour les boutons, consistent sur tous les appareils */
 button {
     background-color: #4CAF50; /* Couleur verte */
     color: white;
@@ -21,34 +21,15 @@ button {
     border: none;
     cursor: pointer;
     padding: 14px 20px; /* Taille initiale pour les écrans plus grands */
+    font-size: 16px; /* Taille de texte initiale */
     width: auto; /* Largeur auto pour s'adapter au contenu */
     box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Ajoute un peu d'ombre pour du relief */
     transition: background-color 0.3s; /* Transition douce pour le hover */
+    border-radius: 5px; /* Adoucit les angles des boutons */
 }
 
 button:hover {
     background-color: #45a049;
-}
-
-/* Media queries pour ajuster les styles sur différents appareils */
-@media (max-width: 600px) {
-    #reader {max-width: 90%; }
-    #result { margin-top: 20px; }
-    #scanned-result { margin-top: 10px; }
-    #scanned-results ul { list-style-type: none; padding: 0; }
-    #scanned-results li { margin-bottom: 5px; }
-    button {padding: 30px 40px; /* Réduit le padding pour les petits écrans */font-size: 30px; /* Réduit la taille de police si nécessaire */}
-    /* Augmenter la taille de la police pour les entrées et les titres si nécessaire */
-    input[type=text] {font-size: 30px; /* Adaptation pour les petits écrans */}
-    h1, h2 {font-size: 35px; /* Tailles plus grandes pour les titres */}
-    #reader {max-width: 90%;}
-
-/* Utilisation de Flexbox pour organiser les boutons de format QRBox */
-#format-buttons-container {
-    display: flex;
-    justify-content: center; /* Centre les boutons horizontalement */
-    flex-wrap: wrap; /* Permet aux boutons de passer à la ligne sur petits écrans */
-    gap: 10px; /* Espacement entre les boutons */
 }
 
 input[type=text] {
@@ -80,4 +61,24 @@ input[type=text] {
 
 #scanned-results strong {
     font-weight: bold;
+}
+
+/* Utilisation de Flexbox pour organiser les boutons de format QRBox */
+#format-buttons-container {
+    display: flex;
+    justify-content: center; /* Centre les boutons horizontalement */
+    flex-wrap: wrap; /* Permet aux boutons de passer à la ligne sur petits écrans */
+    gap: 10px; /* Espacement entre les boutons */
+}
+
+/* Media queries pour ajuster les styles sur petits écrans */
+@media (max-width: 600px) {
+    #reader {max-width: 90%; }
+    button {
+        padding: 20px 30px; /* Augmente le padding pour les petits écrans pour agrandir le bouton */
+        font-size: 18px; /* Augmente la taille de police pour une meilleure lisibilité */
+    }
+    input[type=text], h1, h2 {
+        font-size: 18px; /* Augmente la taille de police pour une meilleure lisibilité sur les petits écrans */
+    }
 }
