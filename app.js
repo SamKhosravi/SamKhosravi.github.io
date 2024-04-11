@@ -12,9 +12,9 @@ function onScanFailure(error) {
 
 // Fonctions pour calculer la taille de qrbox pour les codes-barres et QR Codes
 let qrboxBarcodeFunction = function(viewfinderWidth, viewfinderHeight) {
-    // Utilise une largeur de 90% et une hauteur fixe pour les codes-barres
-    let width = viewfinderWidth * 0.9;
-    let height = Math.min(150, viewfinderHeight * 0.2); // Hauteur de 150px ou 20% de la hauteur du flux vidéo
+    // Utilise une largeur de 70% et une hauteur fixe pour les codes-barres
+    let width = viewfinderWidth * 0.7;
+    let height = Math.min(150, viewfinderHeight * 0.15); // Hauteur de 150px ou 20% de la hauteur du flux vidéo
     return { width: width, height: height };
 };
 
