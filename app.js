@@ -75,16 +75,26 @@ function sendBarcode() {
     .then(response => response.json())
     .then(data => {
         console.log('Réponse du serveur :', data);
-        alert("Code envoyé avec succès !");
+        updateHistory(`Code ${barcode} envoyé avec succès !`, "success");
+        document.getElementById('scanned-text').innerText = ""; // Reset le texte scanné
         // Redémarrez le scanner ici également si vous l'aviez arrêté
         startScanner();
     })
     .catch(error => {
         console.error('Erreur lors de l\'envoi:', error);
-        alert("Erreur lors de l'envoi du code.");
+        updateHistory(`Erreur lors de l'envoi du code ${barcode}.`, "error");
         // Redémarrez le scanner ici également si vous l'aviez arrêté
         startScanner();
     });
+}
+
+// Mettre à jour l'historique
+function updateHistory(message, status) {
+    const scannedList = document.getElementById('scanned-list');
+    const newItem = document.createElement("li");
+    newItem.textContent = message;
+    newItem.className = status; // Ajoutez une classe pour le style
+    scannedList.appendChild(newItem);
 }
 
 // Démarrage du scanner lors du chargement de la page
