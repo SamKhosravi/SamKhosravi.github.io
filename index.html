@@ -17,6 +17,8 @@
     #reader {max-width: 90%; }}
         #result { margin-top: 20px; }
         #scanned-result { margin-top: 10px; }
+        #scanned-results ul { list-style-type: none; padding: 0; }
+        #scanned-results li { margin-bottom: 5px; }
     </style>
     
 </head>
@@ -29,6 +31,11 @@
     <button onclick="sendBarcode()">Envoyer</button>
     <button id="barcode-btn">Format Code-barres</button>
     <button id="qrcode-btn">Format QR Code</button>
+    <!-- Historique des scans -->
+    <div id="scanned-results">
+        <h2>Historique des scans</h2>
+        <ul id="scanned-list"></ul>
+    </div>
     <script src="app.js"></script>
 </body>
 </html>
