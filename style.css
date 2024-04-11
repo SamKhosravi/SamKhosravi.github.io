@@ -3,15 +3,15 @@ body {
     padding: 20px;
     text-align: center;
 }
-/*
+
 #reader{
     width: 100%;
-    max-width: 500px;  Vous pouvez régler ceci pour une largeur maximale appropriée 
-    height: auto;  Gardez la hauteur automatique pour maintenir le ratio 
+    max-width: 500px;  /* Vous pouvez régler ceci pour une largeur maximale appropriée */
+    height: auto;  /*Gardez la hauteur automatique pour maintenir le ratio */
     margin: auto;
     border: 1px solid #ccc;
     position: relative;
-}*/
+}
 
 /* Media queries pour ajuster les styles sur différents appareils */
 @media (max-width: 600px) {
