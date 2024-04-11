@@ -12,17 +12,42 @@ body {
     position: relative;
 }
 
+/* Styles généraux pour les boutons */
 button {
     background-color: #4CAF50; /* Couleur verte */
     color: white;
-    padding: 14px 20px;
     margin: 10px 0;
     border: none;
     cursor: pointer;
+    padding: 14px 20px; /* Taille initiale pour les écrans plus grands */
+    width: auto; /* Largeur auto pour s'adapter au contenu */
+    box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Ajoute un peu d'ombre pour du relief */
+    transition: background-color 0.3s; /* Transition douce pour le hover */
 }
 
 button:hover {
     background-color: #45a049;
+}
+
+/* Utilisation de Flexbox pour organiser les boutons de format QRBox */
+#format-buttons-container {
+    display: flex;
+    justify-content: center; /* Centre les boutons horizontalement */
+    flex-wrap: wrap; /* Permet aux boutons de passer à la ligne sur petits écrans */
+    gap: 10px; /* Espacement entre les boutons */
+}
+
+/* Media queries pour ajuster les boutons sur petits écrans */
+@media (max-width: 600px) {
+    button {
+        padding: 12px 15px; /* Réduit le padding pour les petits écrans */
+        font-size: 14px; /* Réduit la taille de police si nécessaire */
+    }
+
+    /* Assurez-vous que le scanner et d'autres éléments clés sont également responsifs */
+    #reader {
+        max-width: 90%;
+    }
 }
 
 input[type=text] {
