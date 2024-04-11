@@ -39,10 +39,19 @@ input[type=text] {
     display: inline-block;
 }
 
+#scanned-results li {
+    border-bottom: 1px solid #ccc;
+    padding: 8px;
+}
+
 #scanned-results li.success {
     color: green;
 }
 
 #scanned-results li.error {
     color: red;
+}
+
+#scanned-results strong {
+    font-weight: bold;
 }
