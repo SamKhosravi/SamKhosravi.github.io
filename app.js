@@ -60,7 +60,11 @@ document.getElementById('qrcode-btn').addEventListener('click', () => setQrboxSi
 
 // Envoi du code au serveur Flask
 function sendBarcode() {
-    const barcode = document.getElementById('scanned-text').innerText || document.getElementById('manual-input').value;
+    // Priorise la saisie manuelle s'il y a une valeur, sinon utilise le dernier code scanné.
+    const manualInput = document.getElementById('manual-input').value.trim();
+    const scannedText = document.getElementById('scanned-text').innerText.trim();
+    const barcode = manualInput || scannedText; // Utilise la saisie manuelle si disponible
+    //const barcode = document.getElementById('scanned-text').innerText || document.getElementById('manual-input').value;
     if (!barcode) {
         alert("Aucun code à envoyer.");
         return;
