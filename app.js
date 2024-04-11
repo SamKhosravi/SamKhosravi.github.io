@@ -1,8 +1,6 @@
 function onScanSuccess(decodedText, decodedResult) {
-    // Afficher le texte décodé
-    document.getElementById('scanned-text').innerText = decodedText;
-    // Optionnel : Arrêter le scanner après le premier scan réussi
-    // html5QrCode.stop().then(ignore => {}).catch(err => {});
+    // Insérer le code scanné dans le champ de saisie manuelle.
+    document.getElementById('manual-input').value = decodedText;
 }
 
 function onScanFailure(error) {
@@ -60,11 +58,8 @@ document.getElementById('qrcode-btn').addEventListener('click', () => setQrboxSi
 
 // Envoi du code au serveur Flask
 function sendBarcode() {
-    // Priorise la saisie manuelle s'il y a une valeur, sinon utilise le dernier code scanné.
-    const manualInput = document.getElementById('manual-input').value.trim();
-    const scannedText = document.getElementById('scanned-text').innerText.trim();
-    const barcode = manualInput || scannedText; // Utilise la saisie manuelle si disponible
-    //const barcode = document.getElementById('scanned-text').innerText || document.getElementById('manual-input').value;
+    // Utiliser uniquement la valeur du champ de saisie manuelle pour l'envoi.
+    const barcode = document.getElementById('manual-input').value.trim();
     if (!barcode) {
         alert("Aucun code à envoyer.");
         return;
