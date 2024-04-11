@@ -12,8 +12,8 @@ function onScanFailure(error) {
 
 // Fonction pour calculer la taille de qrbox en fonction des dimensions du flux vidéo
 let qrboxFunction = function(viewfinderWidth, viewfinderHeight) {
-    let minEdgePercentage = 0.7; // Utilise 70% de la plus petite arête du flux vidéo
-    let minEdgeSize = Math.min(viewfinderWidth, viewfinderHeight);
+    let minEdgePercentage = 0.7; // Utilise 70% de la plus petite arête du flux vidéo ou un minimum de 250px
+    let minEdgeSize = Math.min(250, viewfinderWidth, viewfinderHeight);
     let qrboxSize = Math.floor(minEdgeSize * minEdgePercentage);
     return { width: qrboxSize, height: qrboxSize };
 };
