@@ -76,7 +76,7 @@ function sendBarcode() {
     .then(response => {
         if (!response.ok) {
             // Si la réponse n'est pas ok, lancez une erreur qui sera attrapée par .catch()
-            throw new Error(`HTTP status ${response.status}`);
+            throw new Error(`Échec de l'envoi avec le statut: ${response.status}`);
         }
         return response.json(); // Continuez avec le traitement de la réponse JSON
     })
@@ -84,18 +84,14 @@ function sendBarcode() {
         // Traitez la réponse de votre serveur Flask ici
         console.log('Réponse du serveur :', data);
         updateHistory(`Code ${barcode} envoyé avec succès !`, "success");
-        document.getElementById('scanned-text').innerText = ""; // Reset le texte scanné
-        document.getElementById('manual-input').value = "";
-        // IMPORTANT : Retournez false pour indiquer un succès sans erreurs.
-        return false;
+        //document.getElementById('scanned-text').innerText = ""; // Reset le texte scanné
+        //document.getElementById('manual-input').value = "";
         // Redémarrez le scanner ici également si vous l'aviez arrêté
         startScanner();
     })
     .catch(error => {
         // Gestion des erreurs
-        // Vérifiez si l'erreur est une suite d'un succès
-        if (error === false) return;
-        
+    
         console.error('Erreur lors de l\'envoi:', error);
         updateHistory(`Erreur lors de l'envoi du code ${barcode}.`, "error");
         // Redémarrez le scanner ici également si vous l'aviez arrêté
