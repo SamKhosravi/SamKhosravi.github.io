@@ -18,7 +18,6 @@ let qrboxFunction = function(viewfinderWidth, viewfinderHeight) {
     return { width: qrboxSize, height: qrboxSize };
 };
 
-
 // Configuration de la caméra et du scanner
 let html5QrCode = new Html5Qrcode("reader");
 const config = { fps: 10, qrbox:  qrboxFunction };
