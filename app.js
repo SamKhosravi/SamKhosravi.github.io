@@ -12,7 +12,7 @@ function onScanFailure(error) {
 
 // Configuration de la caméra et du scanner
 let html5QrCode = new Html5Qrcode("reader");
-const config = { fps: 10, qrbox: { width: 250, height: 250 }, formatsToSupport: [ Html5QrcodeSupportedFormats.QR_CODE, Html5QrcodeSupportedFormats.CODE_128 ] };
+const config = { fps: 10, qrbox: 250 };
 
 function startScanner() {
     // Démarrage du scanner
