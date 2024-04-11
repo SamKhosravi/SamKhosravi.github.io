@@ -24,7 +24,6 @@ button {
     width: auto; /* Largeur auto pour s'adapter au contenu */
     box-shadow: 0 2px 4px rgba(0,0,0,0.2); /* Ajoute un peu d'ombre pour du relief */
     transition: background-color 0.3s; /* Transition douce pour le hover */
-    border-radius: 5px; /* Adoucit les angles des boutons */
 }
 
 button:hover {
