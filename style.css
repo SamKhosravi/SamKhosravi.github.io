@@ -3,14 +3,24 @@ body {
     padding: 20px;
     text-align: center;
 }
-
-#reader {
+/*
+#reader{
     width: 100%;
-    max-width: 500px;
+    max-width: 500px;  Vous pouvez régler ceci pour une largeur maximale appropriée 
+    height: auto;  Gardez la hauteur automatique pour maintenir le ratio 
     margin: auto;
     border: 1px solid #ccc;
     position: relative;
-}
+}*/
+
+/* Media queries pour ajuster les styles sur différents appareils */
+@media (max-width: 600px) {
+    #reader {max-width: 90%; }}
+        #result { margin-top: 20px; }
+        #scanned-result { margin-top: 10px; }
+        #scanned-results ul { list-style-type: none; padding: 0; }
+        #scanned-results li { margin-bottom: 5px; }
+
 
 /* Styles généraux pour les boutons */
 button {
