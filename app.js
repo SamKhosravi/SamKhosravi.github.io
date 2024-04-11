@@ -58,6 +58,26 @@ function setQrboxSize(qrboxFunction) {
 document.getElementById('barcode-btn').addEventListener('click', () => setQrboxSize(qrboxBarcodeFunction));
 document.getElementById('qrcode-btn').addEventListener('click', () => setQrboxSize(qrboxQrCodeFunction));
 
+let flashEnabled = false; // État initial du flash
+
+document.getElementById('flash-toggle').addEventListener('click', () => {
+    if (html5QrCode) {
+        // Basculer l'état du flash
+        flashEnabled = !flashEnabled;
+        html5QrCode.applyVideoConstraints({
+            advanced: [{ torch: flashEnabled }]
+        }).then(() => {
+            // Mettre à jour le texte du bouton en fonction de l'état du flash
+            document.getElementById('flash-toggle').textContent = flashEnabled ? "Désactiver le Flash" : "Activer le Flash";
+        }).catch(err => {
+            // Gérer l'erreur si la fonctionnalité torch n'est pas disponible
+            console.error("Erreur lors de la tentative d'activation du flash:", err);
+            alert("Le flash ne peut pas être activé sur cet appareil ou navigateur.");
+            // Réinitialiser l'état du flash si impossible à activer
+            flashEnabled = false;
+        });
+    }
+});
 
 // Envoi du code au serveur Flask
 function sendBarcode() {
