@@ -78,26 +78,34 @@ function sendBarcode() {
         }
         return response.json(); // Continuez avec le traitement de la réponse JSON
     })
+    // Exemple d'utilisation dans sendBarcode après un envoi réussi
     .then(data => {
-        // Traitez la réponse de votre serveur Flask ici
         console.log('Réponse du serveur :', data);
-        updateHistory(`Code ${barcode} envoyé avec succès !`, "success");
-        // Ne pas redémarrer le scanner ici, car cela pourrait réinitialiser la page / l'interface.
+        // Message personnalisé selon le résultat du serveur
+        const successMessage = `Code ${barcode} envoyé avec succès !`;
+        updateHistory(barcode, "success", successMessage);
+        document.getElementById('manual-input').value = ""; // Effacer le champ après l'envoi réussi.
     })
     .catch(error => {
-        // Gestion des erreurs
         console.error('Erreur lors de l\'envoi:', error);
-        updateHistory(`Erreur lors de l'envoi du code ${barcode}.`, "error");
+        const errorMessage = `Erreur lors de l'envoi du code.`; // Message d'erreur générique
+        updateHistory(barcode, "error", errorMessage);
     });
 }
 
-// Mettre à jour l'historique
-function updateHistory(message, status) {
+// Mettre à jour l'historique avec plus de détails
+function updateHistory(barcode, status, message) {
     const scannedList = document.getElementById('scanned-list');
     const newItem = document.createElement("li");
-    newItem.textContent = message;
-    newItem.className = status; // Ajoutez une classe pour le style
-    scannedList.appendChild(newItem);
+
+    // Obtenir l'horodatage actuel
+    const timestamp = new Date().toLocaleString();
+
+    // Créer le contenu de l'élément historique
+    newItem.innerHTML = `<strong>${timestamp}</strong> - Code: ${barcode} - <span class="${status}">${message}</span>`;
+
+    // Ajouter l'élément à la liste
+    scannedList.prepend(newItem); // Utilisez prepend pour ajouter le dernier scan en haut de la liste
 }
 
 // Démarrage du scanner lors du chargement de la page
