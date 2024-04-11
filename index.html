@@ -6,7 +6,15 @@
     <script src="https://unpkg.com/html5-qrcode"></script>
     <!--<script src="html5-qrcode.min.js"></script>-->
    <style>
-        #reader { width: 1000px; height: 800px; margin: auto; }
+       #reader{
+    width: 100%;
+    max-width: 500px; /* Vous pouvez régler ceci pour une largeur maximale appropriée */
+    height: auto; /* Gardez la hauteur automatique pour maintenir le ratio */
+    margin: auto;}
+
+/* Media queries pour ajuster les styles sur différents appareils */
+@media (max-width: 600px) {
+    #reader {max-width: 90%; }}
         #result { margin-top: 20px; }
         #scanned-result { margin-top: 10px; }
     </style>
