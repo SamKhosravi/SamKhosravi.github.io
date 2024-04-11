@@ -10,17 +10,27 @@ function onScanFailure(error) {
     console.warn(`Scan échoué: ${error}`);
 }
 
-// Fonction pour calculer la taille de qrbox en fonction des dimensions du flux vidéo
-let qrboxFunction = function(viewfinderWidth, viewfinderHeight) {
-    let minEdgePercentage = 0.7; // Utilise 70% de la plus petite arête du flux vidéo ou un minimum de 250px
-    let minEdgeSize = Math.min(250, viewfinderWidth, viewfinderHeight);
-    let qrboxSize = Math.floor(minEdgeSize * minEdgePercentage);
-    return { width: qrboxSize, height: qrboxSize };
+// Fonctions pour calculer la taille de qrbox pour les codes-barres et QR Codes
+let qrboxBarcodeFunction = function(viewfinderWidth, viewfinderHeight) {
+    // Utilise une largeur de 90% et une hauteur fixe pour les codes-barres
+    let width = viewfinderWidth * 0.9;
+    let height = Math.min(150, viewfinderHeight * 0.2); // Hauteur de 150px ou 20% de la hauteur du flux vidéo
+    return { width: width, height: height };
 };
 
-// Configuration de la caméra et du scanner
+let qrboxQrCodeFunction = function(viewfinderWidth, viewfinderHeight) {
+    // Utilise 70% de la plus petite arête pour les QR Codes
+    let minEdgeSize = Math.min(viewfinderWidth, viewfinderHeight);
+    let size = Math.floor(minEdgeSize * 0.7);
+    return { width: size, height: size };
+};
+
+// Définir la fonction qrbox initiale à utiliser pour les codes-barres
+let currentQrboxFunction = qrboxBarcodeFunction;
+
+// Configuration initiale de la caméra et du scanner
 let html5QrCode = new Html5Qrcode("reader");
-const config = { fps: 10, qrbox:  qrboxFunction };
+const config = { fps: 10, qrbox: currentQrboxFunction };
 
 function startScanner() {
     // Démarrage du scanner
@@ -31,6 +41,23 @@ function startScanner() {
         console.error(`Impossible de démarrer le scanner: ${err}`);
     });
 }
+
+// Fonction pour changer la taille de la qrbox
+function setQrboxSize(qrboxFunction) {
+    currentQrboxFunction = qrboxFunction;
+    // Vous devrez peut-être arrêter et redémarrer le scanner pour appliquer le changement
+    if (html5QrCode) {
+        html5QrCode.stop().then(() => {
+            config.qrbox = currentQrboxFunction;
+            startScanner();
+        });
+    }
+}
+
+// Boutons pour changer la qrbox
+document.getElementById('barcode-btn').addEventListener('click', () => setQrboxSize(qrboxBarcodeFunction));
+document.getElementById('qrcode-btn').addEventListener('click', () => setQrboxSize(qrboxQrCodeFunction));
+
 
 // Envoi du code au serveur Flask
 function sendBarcode() {
