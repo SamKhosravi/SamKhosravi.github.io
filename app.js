@@ -102,7 +102,7 @@ function updateHistory(barcode, status, message) {
     const timestamp = new Date().toLocaleString();
 
     // Créer le contenu de l'élément historique
-    newItem.innerHTML = `<strong>${timestamp}</strong> - Code: ${barcode} - <span class="${status}">${message}</span>`;
+    newItem.innerHTML = `<strong>${timestamp}</strong> - <span class="${status}">${message}</span>`;
 
     // Ajouter l'élément à la liste
     scannedList.prepend(newItem); // Utilisez prepend pour ajouter le dernier scan en haut de la liste
