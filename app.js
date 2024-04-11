@@ -10,9 +10,18 @@ function onScanFailure(error) {
     console.warn(`Scan échoué: ${error}`);
 }
 
+// Fonction pour calculer la taille de qrbox en fonction des dimensions du flux vidéo
+let qrboxFunction = function(viewfinderWidth, viewfinderHeight) {
+    let minEdgePercentage = 0.7; // Utilise 70% de la plus petite arête du flux vidéo
+    let minEdgeSize = Math.min(viewfinderWidth, viewfinderHeight);
+    let qrboxSize = Math.floor(minEdgeSize * minEdgePercentage);
+    return { width: qrboxSize, height: qrboxSize };
+};
+
+
 // Configuration de la caméra et du scanner
 let html5QrCode = new Html5Qrcode("reader");
-const config = { fps: 10, qrbox:  { width: 400, height: 150 }};
+const config = { fps: 10, qrbox:  qrboxFunction };
 
 function startScanner() {
     // Démarrage du scanner
