@@ -28,11 +28,19 @@ let currentQrboxFunction = qrboxBarcodeFunction;
 
 // Configuration initiale de la caméra et du scanner
 let html5QrCode = new Html5Qrcode("reader");
-const config = { fps: 10, qrbox: currentQrboxFunction };
+const config = {
+    fps: 20, 
+    qrbox: currentQrboxFunction,
+    aspectRatio: 1.777, // Ratio standard 16:9
+    facingMode: "environment",
+    videoConstraints: {
+        advanced: [{ zoom: 2 }] // Zoom x2
+    }
+};
 
 function startScanner() {
     // Démarrage du scanner
-    html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess)
+    html5QrCode.start(config, onScanSuccess)
     .catch(err => {
         // Gestion de l'erreur si la caméra n'est pas accessible
         document.getElementById('result').innerText = "Erreur : Impossible de démarrer la caméra.";
