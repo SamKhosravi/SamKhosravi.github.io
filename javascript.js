@@ -32,6 +32,17 @@ const config = { fps: 10, qrbox: currentQrboxFunction };
 
 function startScanner() {
     // Démarrage du scanner
+    let config = {
+        aspectRatio: 1.777, // Rapport largeur/hauteur pour HD
+        videoConstraints: {
+            facingMode: "environment",
+            width: { ideal: 1920 },
+            height: { ideal: 1080 },
+            advanced: [{zoom: 2}] // Demande un zoom x2, s'il est disponible
+        }
+    };
+
+    
     html5QrCode.start({ facingMode: "environment" }, config, onScanSuccess)
     .catch(err => {
         // Gestion de l'erreur si la caméra n'est pas accessible
