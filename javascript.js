@@ -81,6 +81,12 @@ function sendBarcode() {
     // Exemple d'utilisation dans sendBarcode après un envoi réussi
     .then(data => {
         console.log('Réponse du serveur :', data);
+        // Afficher les informations nutritionnelles
+        document.getElementById('product-name').textContent = data.data.name;
+        document.getElementById('energy-kcal').textContent = data.data.energy + " kcal";
+        document.getElementById('proteins').textContent = data.data.proteins + " g";
+        document.getElementById('fats').textContent = data.data.fats + " g";
+        document.getElementById('carbohydrates').textContent = data.data.carbohydrates + " g";
         // Message personnalisé selon le résultat du serveur
         const successMessage = `Code ${barcode} envoyé avec succès !`;
         updateHistory(barcode, "success", successMessage);
