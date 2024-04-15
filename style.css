@@ -6,7 +6,7 @@ body {
 
 #reader {
     width: 100%;
-    max-width: 500px; /* Vous pouvez régler ceci pour une largeur maximale appropriée */
+    max-width: 100%; /* Vous pouvez régler ceci pour une largeur maximale appropriée */
     height: auto; /* Gardez la hauteur automatique pour maintenir le ratio */
     margin: auto;
     border: 1px solid #ccc;
