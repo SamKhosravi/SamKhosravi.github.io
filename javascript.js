@@ -38,7 +38,7 @@ function startScanner() {
             facingMode: "environment",
             width: { ideal: 1920 },
             height: { ideal: 1080 },
-            advanced: [{zoom: 2}] // Demande un zoom x2, s'il est disponible
+            advanced: [{zoom: 4}] // Demande un zoom x2, s'il est disponible
         }
     };
 
