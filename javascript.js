@@ -82,11 +82,7 @@ function sendBarcode() {
     .then(data => {
         console.log('Réponse du serveur :', data);
         // Afficher les informations nutritionnelles
-        document.getElementById('product-name').textContent = data.data.name;
-        document.getElementById('energy-kcal').textContent = data.data.energy + " kcal";
-        document.getElementById('proteins').textContent = data.data.proteins + " g";
-        document.getElementById('fats').textContent = data.data.fats + " g";
-        document.getElementById('carbohydrates').textContent = data.data.carbohydrates + " g";
+        updateProductDetails(data.data);
         // Message personnalisé selon le résultat du serveur
         const successMessage = `Code ${barcode} envoyé avec succès !`;
         updateHistory(barcode, "success", successMessage);
@@ -97,6 +93,31 @@ function sendBarcode() {
         const errorMessage = `Erreur lors de l'envoi du code.`; // Message d'erreur générique
         updateHistory(barcode, "error", errorMessage);
     });
+}
+
+
+function updateProductDetails(details) {
+    document.getElementById('product-name').textContent = details.product_name;
+    document.getElementById('brands').textContent = details.brands;
+    document.getElementById('categories').textContent = details.categories;
+    document.getElementById('labels').textContent = details.labels;
+    document.getElementById('quantity').textContent = details.quantity;
+    document.getElementById('manufacturing-places').textContent = details.manufacturing_places;
+    document.getElementById('countries').textContent = details.countries;
+    document.getElementById('allergens').textContent = details.allergens.join(', ');
+    document.getElementById('nova-group').textContent = details.nova_group;
+    document.getElementById('nutrition-score-fr').textContent = details.nutrition_score_fr;
+
+    document.getElementById('energy-kj').textContent = details.energy_kj;
+    document.getElementById('energy-kcal').textContent = details.energy_kcal;
+    document.getElementById('proteins').textContent = details.proteins;
+    document.getElementById('carbohydrates').textContent = details.carbohydrates;
+    document.getElementById('sugars').textContent = details.sugars;
+    document.getElementById('fat').textContent = details.fat;
+    document.getElementById('saturated-fat').textContent = details.saturated_fat;
+    document.getElementById('fiber').textContent = details.fiber;
+    document.getElementById('sodium').textContent = details.sodium;
+    document.getElementById('salt').textContent = details.salt;
 }
 
 // Mettre à jour l'historique avec plus de détails
