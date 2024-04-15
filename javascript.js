@@ -12,7 +12,7 @@ function onScanFailure(error) {
 let qrboxBarcodeFunction = function(viewfinderWidth, viewfinderHeight) {
     // Utilise une largeur de 70% et une hauteur fixe pour les codes-barres
     let width = viewfinderWidth * 0.7;
-    let height = viewfinderHeight * 0.10; // Hauteur de 150px ou 20% de la hauteur du flux vidéo
+    let height = viewfinderHeight * 0.7; // Hauteur de 150px ou 20% de la hauteur du flux vidéo
     return { width: width, height: height };
 };
 
