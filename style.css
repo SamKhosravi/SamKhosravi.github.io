@@ -72,7 +72,7 @@ input[type=text] {
 }
 
 /* Media queries pour ajuster les styles sur petits écrans */
-@media (max-width: 600px) {
+@media (max-width: 100%;) {
     #reader {max-width: 100%; }
     button {
         padding: 20px 30px; /* Augmente le padding pour les petits écrans pour agrandir le bouton */
