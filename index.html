@@ -4,22 +4,6 @@
     <meta charset="UTF-8">
     <title>Scanner de Code QR/Code-barres</title>
     <script src="https://unpkg.com/html5-qrcode"></script>
-   <!--<style>
-       #reader{
-    width: 100%;
-    max-width: 500px; /* Vous pouvez régler ceci pour une largeur maximale appropriée */
-    height: auto; /* Gardez la hauteur automatique pour maintenir le ratio */
-    margin: auto;}
-
-/* Media queries pour ajuster les styles sur différents appareils */
-@media (max-width: 600px) {
-    #reader {max-width: 90%; }}
-        #result { margin-top: 20px; }
-        #scanned-result { margin-top: 10px; }
-        #scanned-results ul { list-style-type: none; padding: 0; }
-        #scanned-results li { margin-bottom: 5px; }
-    </style>-->
-    
 </head>
 <link rel="stylesheet" href="style.css">
 <body>
@@ -31,6 +15,16 @@
     <div id="format-buttons-container">
         <button id="barcode-btn">Format Code-barres</button>
         <button id="qrcode-btn">Format QR Code</button>
+    </div>
+
+        <!-- Informations nutritionnelles -->
+    <div id="nutrition-info">
+        <h2>Informations Nutritionnelles</h2>
+        <p>Nom du Produit: <span id="product-name"></span></p>
+        <p>Énergie (kcal pour 100g): <span id="energy-kcal"></span></p>
+        <p>Protéines (g pour 100g): <span id="proteins"></span></p>
+        <p>Matières grasses (g pour 100g): <span id="fats"></span></p>
+        <p>Glucides (g pour 100g): <span id="carbohydrates"></span></p>
     </div>
 
     <!-- Historique des scans -->
