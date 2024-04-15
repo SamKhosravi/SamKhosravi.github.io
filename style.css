@@ -9,8 +9,15 @@ body {
     max-width: 500px; /* Vous pouvez régler ceci pour une largeur maximale appropriée */
     height: auto; /* Gardez la hauteur automatique pour maintenir le ratio */
     margin: auto;
-    border: 1px solid #ccc;
+    border: 1px solid blue;
+    animation: pulseBorder 1s infinite ease-in-out;
     position: relative;
+}
+
+@keyframes pulseBorder {
+    0% { border-color: blue; }
+    50% { border-color: green; } /* Bleu lors du scan */
+    100% { border-color: blue; }
 }
 
 /* Styles généraux pour les boutons, consistent sur tous les appareils */
