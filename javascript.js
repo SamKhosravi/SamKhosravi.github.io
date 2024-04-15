@@ -31,7 +31,6 @@ let html5QrCode = new Html5Qrcode("reader");
 const config = {
     fps: 10, 
     qrbox: currentQrboxFunction,
-    aspectRatio: 1.777, // Ratio standard 16:9
     facingMode: "environment",
     }
 };
