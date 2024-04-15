@@ -37,7 +37,7 @@ const config = {
 
 function startScanner() {
     // Démarrage du scanner
-    html5QrCode.start(config, onScanSuccess)
+    html5QrCode.start({facingMode: "environment"},config, onScanSuccess)
     .catch(err => {
         // Gestion de l'erreur si la caméra n'est pas accessible
         document.getElementById('result').innerText = "Erreur : Impossible de démarrer la caméra.";
