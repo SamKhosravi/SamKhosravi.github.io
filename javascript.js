@@ -102,7 +102,7 @@ function updateProductDetails(details) {
     document.getElementById('categories').textContent = details.categories;
     document.getElementById('labels').textContent = details.labels;
     document.getElementById('quantity').textContent = details.quantity;
-    document.getElementById('manufacturing-places').textContent = details.manufacturing_places;
+    document.getElementById('manufacturing_places').textContent = details.manufacturing_places;
     document.getElementById('countries').textContent = details.countries;
     document.getElementById('allergens').textContent = details.allergens.join(', ');
     document.getElementById('nova-group').textContent = details.nova_group;
@@ -118,6 +118,18 @@ function updateProductDetails(details) {
     document.getElementById('fiber').textContent = details.fiber;
     document.getElementById('sodium').textContent = details.sodium;
     document.getElementById('salt').textContent = details.salt;
+
+    document.getElementById('serving_size').textContent = details.serving_size;
+    document.getElementById('ingredients_text').textContent = details.ingredients_text;
+    document.getElementById('traces').textContent = details.traces;
+    document.getElementById('nutrition_grade_fr').textContent = details.nutrition_grade_fr;
+    document.getElementById('nutrient_levels').textContent = details.nutrient_levels;
+    document.getElementById('vitamins').textContent = details.vitamins;
+    document.getElementById('minerals').textContent = details.minerals;
+    document.getElementById('eco_score').textContent = details.eco_score;
+    document.getElementById('additives').textContent = details.additives;
+
+    
 }
 
 // Mettre à jour l'historique avec plus de détails
