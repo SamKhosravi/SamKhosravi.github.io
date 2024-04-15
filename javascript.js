@@ -32,12 +32,11 @@ const config = {
     fps: 10, 
     qrbox: currentQrboxFunction,
     facingMode: "environment",
-    }
 };
 
 function startScanner() {
     // Démarrage du scanner
-    html5QrCode.start({facingMode: "environment"},config, onScanSuccess)
+    html5QrCode.start(config, onScanSuccess)
     .catch(err => {
         // Gestion de l'erreur si la caméra n'est pas accessible
         document.getElementById('result').innerText = "Erreur : Impossible de démarrer la caméra.";
