@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <title>Login/Register</title>
+</head>
+<body>
+    <h1>Welcome</h1>
+
+    <h2>Login</h2>
+    <form method="post" action="{{ url_for('login') }}">
+        Username: <input type="text" name="username"><br>
+        Password: <input type="password" name="password"><br>
+        <input type="submit" value="Login">
+    </form>
+
+    <h2>Register</h2>
+    <form method="post" action="{{ url_for('register') }}">
+        Username: <input type="text" name="username"><br>
+        Email: <input type="email" name="email"><br>
+        Password: <input type="password" name="password"><br>
+        <input type="submit" value="Register">
+    </form>
+</body>
+</html>
