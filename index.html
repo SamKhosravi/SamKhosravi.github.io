@@ -1,3 +1,14 @@
+import { getAuth, onAuthStateChanged } from "https://www.gstatic.com/firebasejs/10.11.0/firebase-auth.js";
+
+const auth = getAuth();
+onAuthStateChanged(auth, (user) => {
+    if (!user) {
+        // Si l'utilisateur n'est pas connecté, rediriger vers login.html
+        window.location.href = 'login.html';
+    }
+});
+
+
 <!DOCTYPE html>
 <html lang="fr">
 <head>
