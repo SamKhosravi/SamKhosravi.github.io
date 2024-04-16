@@ -9,18 +9,18 @@
     <h1>Welcome</h1>
 
     <h2>Login</h2>
-    <form method="post" action="{{ url_for('login') }}">
+    <form method="post" action="{{ url_for('auth') }}">
         Username: <input type="text" name="username"><br>
         Password: <input type="password" name="password"><br>
-        <input type="submit" value="Login">
+        <input type="submit" name="login" value="Login">
     </form>
 
     <h2>Register</h2>
-    <form method="post" action="{{ url_for('register') }}">
+    <form method="post" action="{{ url_for('auth') }}">
         Username: <input type="text" name="username"><br>
         Email: <input type="email" name="email"><br>
         Password: <input type="password" name="password"><br>
-        <input type="submit" value="Register">
+        <input type="submit" name="register" value="Register">
     </form>
 </body>
 </html>
